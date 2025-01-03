@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const itemRoutes = require("./routes/itemRoutes");
 const weatherRoutes = require("./routes/weatherRoutes");
+const authRoutes = require("./routes/authRoutes")
 require("dotenv").config();
 
 const app = express();
@@ -18,8 +19,10 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error(err));
 
-app.use("/api/items", itemRoutes); //  item routes
+app.use("/api/items", itemRoutes); //  item routes(protected)
 app.use("/api", weatherRoutes); //  weather routes
+app.use("/api/auth", authRoutes); // Authentication routes (register/login)
+
 
 app.get("/", (req, res) => {
   res.send(" Greetings from the backend! ☀️");
@@ -35,7 +38,5 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-const crypto = require("crypto");
-const secret = crypto.randomBytes(64).toString("hex");
-console.log(secret);
+
 

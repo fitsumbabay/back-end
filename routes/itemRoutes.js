@@ -1,9 +1,10 @@
 const express = require("express");
 const Item = require("../models/item");
+const authenticateToken = require("../middleware/authenticateToken"); 
 const router = express.Router();
 
-// CREATE: Add a new item
-router.post("/", async (req, res) => {
+// CREATE: Add a new item (Protected route)
+router.post("/",  authenticateToken, async (req, res) => {
   const { name, description, price } = req.body;
 
   const newItem = new Item({
@@ -20,8 +21,8 @@ router.post("/", async (req, res) => {
   }
 });
 
-// READ: Retrieve all items
-router.get("/", async (req, res) => {
+// READ: Retrieve all items(Protected route)
+router.get("/",  authenticateToken, async (req, res) => {
   try {
     const items = await Item.find();
     res.json(items);
@@ -30,8 +31,8 @@ router.get("/", async (req, res) => {
   }
 });
 
-// READ: Retrieve a specific item by ID
-router.get("/:id", async (req, res) => {
+// READ: Retrieve a specific item by ID (Protected route)
+router.get("/:id",  authenticateToken,  async (req, res) => {
   try {
     const item = await Item.findById(req.params.id);
     if (!item) return res.status(404).json({ message: "Item not found" });
@@ -41,8 +42,8 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// UPDATE: Update an existing item
-router.put("/:id", async (req, res) => {
+// UPDATE: Update an existing item (Protected route)
+router.put("/:id",  authenticateToken, async (req, res) => {
   try {
     const item = await Item.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -54,8 +55,8 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// DELETE: Remove an item by ID
-router.delete("/:id", async (req, res) => {
+// DELETE: Remove an item by ID (Protected route)
+router.delete("/:id",  authenticateToken, async (req, res) => {
   try {
     const item = await Item.findByIdAndDelete(req.params.id);
     if (!item) return res.status(404).json({ message: "Item not found" });

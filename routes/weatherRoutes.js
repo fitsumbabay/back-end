@@ -13,7 +13,7 @@ router.get("/weather/:city", async (req, res) => {
     );
     res.json(response.data);
   } catch (error) {
-    console.error(error); // Log the complete error
+    console.error(error);
     if (error.response && error.response.status === 404) {
       return res.status(404).json({ message: "City not found" });
     }
