@@ -9,7 +9,7 @@ This API manages items, fetches weather data, and supports user authentication w
 ## Usage Instructions
 1. Clone the repository:
    git clone https://github.com/fitsumbabay/back-end
-## Live Site
+## Live Site:
 
 2. Install dependencies;
   npm install
@@ -28,13 +28,13 @@ This API manages items, fetches weather data, and supports user authentication w
 *Live*: 
 
 
-Endpoints
+## Endpoints
 1. Item Routes
 *GET /items*
--Description: Retrieve a list of all items.
--Expected Response:
-Status Code: 200 OK
-Body:
+- Description: Retrieve a list of all items.
+- Expected Response:
+- Status Code: 200 OK
+ - Body:
 [
     {
         "id": "string",
@@ -46,8 +46,8 @@ Body:
 ]
 -------------------------------------------------------------
 *POST /items*
--Description: Create a new item.
--Request Body:
+- Description: Create a new item.
+- Request Body:
 {
     "name": "string",        
     "description": "string", 
@@ -55,9 +55,9 @@ Body:
 }
 
 
-Expected Response:
-Status Code: 201 Created
-Body:
+- Expected Response:
+- Status Code: 201 Created
+  - Body:
 {
     "id": "string",
     "name": "string",
@@ -68,13 +68,13 @@ Body:
 -------------------------------------------------------------
 2. Weather Routes
 *GET /weather/:city*
- -Description: Retrieve weather data for a specific city.
- -Parameters: 
-     -city (Path Parameter): The name of the city to fetch weather data for.
+ - Description: Retrieve weather data for a specific city.
+ - Parameters: 
+     - city (Path Parameter): The name of the city to fetch weather data for.
 
-Expected Response:
-Status Code: 200 OK
-Body:
+- Expected Response:
+- Status Code: 200 OK
+    - Body:
 {
     "weather": [
         {
@@ -91,14 +91,14 @@ Body:
 
 Error Response:
 *Status Code*: 404 Not Found (if the city is not found)
-Body:
+  - Body:
 {
     "message": "City not found"
 }
 
-Error Handling
-Common errors and their responses include:
-500 Internal Server Error:
+*Error Handling*
+ - Common errors and their responses include:
+    - 500 Internal Server Error:
 {
     "message": "Internal server error"
 }
@@ -106,8 +106,8 @@ Common errors and their responses include:
 
 3. Authentication Routes
   *POST /auth/register*
-      -Description: Register a new user.
-      -Request Body:
+      - Description: Register a new user.
+      - Request Body:
          {
     "username": "string",
     "password": "string"
@@ -119,5 +119,5 @@ Expected Response:
 }
 
 *POST /auth/login*
-   -Description: Log in and retrieve a JWT token.
-   -Request Body
+   - Description: Log in and retrieve a JWT token.
+   - Request Body
